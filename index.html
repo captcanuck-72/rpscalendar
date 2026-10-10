@@ -63,32 +63,6 @@
       color: var(--text-soft);
     }
 
-    .clock {
-      text-align: right;
-      font-family: "Oswald", sans-serif;
-      line-height: 1;
-    }
-
-    .clock .time {
-      font-size: clamp(1.6rem, 4.5vw, 3rem);
-      font-weight: 600;
-    }
-
-    .clock .ampm {
-      font-family: "Urbanist", sans-serif;
-      font-size: 0.4em;
-      margin-left: 2px;
-      font-weight: 600;
-    }
-
-    .clock .date {
-      font-family: "Urbanist", sans-serif;
-      font-size: clamp(0.85rem, 1.6vw, 1.05rem);
-      color: var(--text-soft);
-      margin-top: 6px;
-      font-weight: 600;
-    }
-
     .card {
       flex: 1;
       display: flex;
@@ -127,13 +101,7 @@
 <body>
   <header>
     <div>
-      <h1 class="title">Upcoming Events</h1>
-      <p class="subtitle">Rothesay Park School</p>
-    </div>
-    <div class="clock" aria-live="off">
-      <div class="time"><span id="time">--:--</span><span class="ampm" id="ampm"></span></div>
-      <div class="date" id="date"></div>
-    </div>
+      <h1 class="title">Upcoming Events</h1>    </div>
   </header>
 
   <main class="card">
@@ -150,22 +118,6 @@
     const params = new URLSearchParams(location.search);
     if (params.get('theme') === 'dark') document.body.classList.add('dark');
     if (params.get('header') === '0') document.body.classList.add('no-header');
-
-    const tz = 'America/Halifax';
-    function tick() {
-      const now = new Date();
-      const parts = new Intl.DateTimeFormat('en-CA', {
-        timeZone: tz, hour: 'numeric', minute: '2-digit', hour12: true
-      }).formatToParts(now);
-      const get = t => (parts.find(p => p.type === t) || {}).value || '';
-      document.getElementById('time').textContent = get('hour') + ':' + get('minute');
-      document.getElementById('ampm').textContent = get('dayPeriod').replace(/\./g, '').toLowerCase();
-      document.getElementById('date').textContent = now.toLocaleDateString('en-CA', {
-        timeZone: tz, weekday: 'long', month: 'long', day: 'numeric'
-      });
-    }
-    tick();
-    setInterval(tick, 10000);
 
     // Refresh the calendar every 15 minutes so new events appear on the display
     setInterval(() => {

@@ -6,26 +6,28 @@
   <title>Upcoming Events</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Urbanist:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.5.0/ical.min.js"></script>
   <style>
     :root {
       /* Sampled from the Pickcel side panels (slate blue at top fading to teal) */
       --panel-top: #2f4d6c;
       --panel-mid: #3b6a82;
       --panel-bottom: #4b8792;
-      --card: rgba(255, 255, 255, 0.12);
-      --card-border: rgba(255, 255, 255, 0.18);
+      --card: rgba(255, 255, 255, 0.10);
+      --card-today: rgba(255, 255, 255, 0.20);
+      --card-border: rgba(255, 255, 255, 0.16);
       --text: #ffffff;
-      --text-soft: rgba(255, 255, 255, 0.78);
-      --gutter: clamp(10px, 2.5vw, 28px);
+      --text-soft: rgba(255, 255, 255, 0.72);
+      --accent: #f5c242;      /* gold from the school crest */
+      --dot: #5fd89a;         /* calendar green, lifted for the dark background */
+      --gutter: clamp(10px, 3vmin, 28px);
+      font-size: clamp(14px, 1.6vmin + 8px, 26px);
     }
 
     * { box-sizing: border-box; }
 
-    html, body {
-      margin: 0;
-      height: 100%;
-    }
+    html, body { margin: 0; height: 100%; }
 
     body {
       background: linear-gradient(180deg, var(--panel-top) 0%, var(--panel-mid) 55%, var(--panel-bottom) 100%) fixed;
@@ -33,97 +35,388 @@
       font-family: "Urbanist", system-ui, sans-serif;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      min-height: 100dvh;
+      height: 100vh;
+      height: 100dvh;
       padding: var(--gutter);
-      gap: var(--gutter);
+      gap: calc(var(--gutter) * 0.8);
+      overflow: hidden;
     }
 
-    header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .title {
+    h1 {
       font-family: "Oswald", sans-serif;
       font-weight: 600;
-      font-size: clamp(1.6rem, 4.5vw, 3rem);
+      font-size: 2.1rem;
       line-height: 1;
       margin: 0;
       letter-spacing: 0.01em;
     }
 
-    .subtitle {
-      margin: 6px 0 0;
-      font-weight: 600;
-      font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+    /* Event list fills the remaining space and fades out at the bottom */
+    #agenda {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent 100%);
+              mask-image: linear-gradient(180deg, #000 88%, transparent 100%);
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 3.4rem 1fr;
+      gap: 0.8rem;
+      align-items: start;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 0.65rem 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .day.today { background: var(--card-today); }
+
+    .date {
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+      line-height: 1;
+      padding-top: 0.1rem;
+    }
+
+    .date .dow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--text-soft);
     }
 
-    .card {
-      flex: 1;
+    .date .num {
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin: 0.1rem 0;
+    }
+
+    .date .mon {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .day.today .dow { color: var(--accent); }
+
+    .events {
+      list-style: none;
+      margin: 0;
+      padding: 0;
       display: flex;
-      min-height: 360px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: clamp(6px, 1.2vw, 14px);
-      backdrop-filter: blur(4px);
+      flex-direction: column;
+      gap: 0.4rem;
+      min-width: 0;
     }
 
-    .calendar-wrap {
-      flex: 1;
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #ffffff;
+    .tag {
+      display: inline-block;
+      font-family: "Oswald", sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.1rem;
     }
 
-    .calendar-wrap iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
+    .event {
+      display: grid;
+      grid-template-columns: 0.55rem 1fr;
+      gap: 0.55rem;
+      align-items: baseline;
     }
 
-    /* Optional dark look: add ?theme=dark to the page URL */
-    body.dark .calendar-wrap { background: #1d2f40; }
-    body.dark .calendar-wrap iframe { filter: invert(0.9) hue-rotate(180deg); }
+    .event::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: var(--dot);
+      transform: translateY(-0.05rem);
+    }
 
-    /* Hide header with ?header=0 if the Pickcel zone is small */
-    body.no-header header { display: none; }
+    .event.alert::before { background: var(--accent); }
+
+    .event .title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .event .when {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-top: 0.1rem;
+    }
+
+    .event .now {
+      font-family: "Oswald", sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: #22384f;
+      padding: 0.05rem 0.4rem;
+      border-radius: 4px;
+      margin-left: 0.3rem;
+      vertical-align: 0.1rem;
+    }
+
+    .message {
+      color: var(--text-soft);
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem 0;
+    }
+
+    /* Hide the heading with ?header=0 if the Pickcel zone is small */
+    body.no-header h1 { display: none; }
   </style>
 </head>
 <body>
-  <header>
-    <div>
-      <h1 class="title">Upcoming Events</h1>    </div>
-  </header>
-
-  <main class="card">
-    <div class="calendar-wrap">
-      <iframe
-        title="Calendar agenda"
-        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=America%2FHalifax&showPrint=0&showTitle=0&showCalendars=0&showTabs=0&showTz=0&showNav=0&mode=AGENDA&src=Y29udGFjdEBtYXJrYWJhdGVzLmNh&color=%230b8043"
-        scrolling="no"
-        loading="eager"></iframe>
-    </div>
-  </main>
+  <h1>Upcoming Events</h1>
+  <section id="agenda" aria-live="polite">
+    <p class="message">Loading events…</p>
+  </section>
 
   <script>
+    // ---- Settings -------------------------------------------------------
+    const GITHUB_USER = 'captcanuck-72';
+    const GITHUB_REPO = 'rpscalendar';
+    const BRANCH = 'main';
+    const TZ = 'America/Halifax';
+    const DAYS_AHEAD = 45;            // how far ahead to look for events
+    const RELOAD_MINUTES = 5;         // how often to re-read the calendar
+    // Events whose title contains any of these words are not shown, e.g. ['pay', 'counsel']
+    const HIDE_IF_TITLE_HAS = [];
+    // ---------------------------------------------------------------------
+
+    // raw.githubusercontent.com updates as soon as the Action commits;
+    // the local copy is a fallback.
+    const SOURCES = [
+      `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}/calendar.ics`,
+      'calendar.ics'
+    ];
+
     const params = new URLSearchParams(location.search);
-    if (params.get('theme') === 'dark') document.body.classList.add('dark');
     if (params.get('header') === '0') document.body.classList.add('no-header');
 
-    // Refresh the calendar every 15 minutes so new events appear on the display
-    setInterval(() => {
-      const f = document.querySelector('.calendar-wrap iframe');
-      f.src = f.src;
-    }, 15 * 60 * 1000);
+    const agendaEl = document.getElementById('agenda');
+    let calendarText = null;
+
+    const pad = n => String(n).padStart(2, '0');
+    const keyFromIcalDate = t => `${t.year}-${pad(t.month)}-${pad(t.day)}`;
+    const keyFromDate = d => new Intl.DateTimeFormat('en-CA', {
+      timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit'
+    }).format(d);
+    const addDays = (key, n) => {
+      const [y, m, d] = key.split('-').map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, d + n, 12));
+      return `${dt.getUTCFullYear()}-${pad(dt.getUTCMonth() + 1)}-${pad(dt.getUTCDate())}`;
+    };
+    const dateFromKey = key => {
+      const [y, m, d] = key.split('-').map(Number);
+      return new Date(Date.UTC(y, m - 1, d, 12));
+    };
+    const fmtKey = (key, opts) =>
+      dateFromKey(key).toLocaleDateString('en-CA', { timeZone: 'UTC', ...opts });
+    const fmtTime = d => new Intl.DateTimeFormat('en-US', {
+      timeZone: TZ, hour: 'numeric', minute: '2-digit'
+    }).format(d).replace(' AM', ' am').replace(' PM', ' pm');
+
+    async function loadCalendar() {
+      for (const url of SOURCES) {
+        try {
+          const busted = url.startsWith('http') ? url + '?t=' + Date.now() : url;
+          const res = await fetch(busted, { cache: 'no-store' });
+          if (res.ok) {
+            const text = await res.text();
+            if (text.includes('BEGIN:VCALENDAR')) return text;
+          }
+        } catch (e) { /* try next source */ }
+      }
+      throw new Error('Calendar could not be loaded');
+    }
+
+    function collectEvents(text, now) {
+      const comp = new ICAL.Component(ICAL.parse(text));
+      comp.getAllSubcomponents('vtimezone').forEach(tz => ICAL.TimezoneService.register(tz));
+
+      const todayKey = keyFromDate(now);
+      const lastKey = addDays(todayKey, DAYS_AHEAD);
+      const windowEnd = dateFromKey(addDays(lastKey, 1));
+
+      // Pair recurring events with their edited/cancelled instances
+      const masters = new Map();
+      const exceptions = [];
+      for (const v of comp.getAllSubcomponents('vevent')) {
+        const ev = new ICAL.Event(v);
+        if (ev.isRecurrenceException()) exceptions.push(ev);
+        else masters.set(ev.uid + '|' + masters.size, ev);
+      }
+      const byUid = new Map();
+      for (const ev of masters.values()) byUid.set(ev.uid, ev);
+      for (const ex of exceptions) {
+        const master = byUid.get(ex.uid);
+        if (master) master.relateException(ex);
+      }
+
+      const out = [];
+      const add = (item, start, end) => {
+        if ((item.component.getFirstPropertyValue('status') || '').toUpperCase() === 'CANCELLED') return;
+        const lower = (item.summary || '').toLowerCase();
+        if (HIDE_IF_TITLE_HAS.some(w => w && lower.includes(w.toLowerCase()))) return;
+        const allDay = start.isDate;
+        let startKey, endKeyExcl, startDate = null, endDate = null;
+        if (allDay) {
+          startKey = keyFromIcalDate(start);
+          endKeyExcl = end ? keyFromIcalDate(end) : addDays(startKey, 1);
+          if (endKeyExcl <= startKey) endKeyExcl = addDays(startKey, 1);
+          if (endKeyExcl <= todayKey) return;
+        } else {
+          startDate = start.toJSDate();
+          endDate = end ? end.toJSDate() : startDate;
+          if (endDate <= now) return;
+          startKey = keyFromDate(startDate);
+          endKeyExcl = addDays(keyFromDate(new Date(endDate.getTime() - 1)), 1);
+        }
+        if (startKey > lastKey) return;
+        out.push({
+          title: item.summary || '(No title)',
+          allDay, startKey, endKeyExcl, startDate, endDate,
+          // Events already under way are shown under today
+          groupKey: startKey < todayKey ? todayKey : startKey
+        });
+      };
+
+      for (const ev of masters.values()) {
+        if (ev.isRecurring()) {
+          const it = ev.iterator();
+          let next, guard = 0;
+          while ((next = it.next()) && guard++ < 5000) {
+            if (next.toJSDate() >= windowEnd) break;
+            const d = ev.getOccurrenceDetails(next);
+            add(d.item, d.startDate, d.endDate);
+          }
+        } else {
+          if (ev.startDate.toJSDate() >= windowEnd) continue;
+          add(ev, ev.startDate, ev.endDate);
+        }
+      }
+
+      out.sort((a, b) =>
+        a.groupKey.localeCompare(b.groupKey) ||
+        (b.allDay - a.allDay) ||
+        ((a.startDate || 0) - (b.startDate || 0)) ||
+        a.title.localeCompare(b.title));
+      return { events: out, todayKey };
+    }
+
+    function el(tag, cls, text) {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    }
+
+    function describeWhen(ev, now) {
+      if (ev.allDay) {
+        const lastDay = addDays(ev.endKeyExcl, -1);
+        if (lastDay === ev.startKey) return 'All day';
+        return 'Until ' + fmtKey(lastDay, { weekday: 'short', month: 'short', day: 'numeric' });
+      }
+      const sameDay = keyFromDate(ev.startDate) === keyFromDate(new Date(ev.endDate.getTime() - 1));
+      const end = sameDay
+        ? fmtTime(ev.endDate)
+        : fmtKey(keyFromDate(ev.endDate), { month: 'short', day: 'numeric' }) + ', ' + fmtTime(ev.endDate);
+      return ev.endDate - ev.startDate > 0 ? `${fmtTime(ev.startDate)} – ${end}` : fmtTime(ev.startDate);
+    }
+
+    function render() {
+      if (!calendarText) return;
+      const now = new Date();
+      let data;
+      try {
+        data = collectEvents(calendarText, now);
+      } catch (e) {
+        agendaEl.replaceChildren(el('p', 'message', 'The calendar could not be read.'));
+        console.error(e);
+        return;
+      }
+      const { events, todayKey } = data;
+      const tomorrowKey = addDays(todayKey, 1);
+
+      if (!events.length) {
+        agendaEl.replaceChildren(el('p', 'message', 'No upcoming events.'));
+        return;
+      }
+
+      const groups = new Map();
+      for (const ev of events) {
+        if (!groups.has(ev.groupKey)) groups.set(ev.groupKey, []);
+        groups.get(ev.groupKey).push(ev);
+      }
+
+      const frag = document.createDocumentFragment();
+      for (const [key, list] of groups) {
+        const day = el('article', 'day' + (key === todayKey ? ' today' : ''));
+
+        const date = el('div', 'date');
+        date.append(
+          el('div', 'dow', fmtKey(key, { weekday: 'short' }).replace('.', '')),
+          el('div', 'num', fmtKey(key, { day: 'numeric' })),
+          el('div', 'mon', fmtKey(key, { month: 'short' }).replace('.', ''))
+        );
+
+        const ul = el('ul', 'events');
+        if (key === todayKey) ul.append(el('li', 'tag', 'Today'));
+        else if (key === tomorrowKey) ul.append(el('li', 'tag', 'Tomorrow'));
+
+        for (const ev of list) {
+          const li = el('li', 'event' + (/no classes|no school|closed/i.test(ev.title) ? ' alert' : ''));
+          const body = el('div');
+          const title = el('span', 'title', ev.title);
+          body.append(title);
+          if (!ev.allDay && ev.startDate <= now && now < ev.endDate) title.append(el('span', 'now', 'Now'));
+          body.append(el('span', 'when', describeWhen(ev, now)));
+          li.append(body);
+          ul.append(li);
+        }
+
+        day.append(date, ul);
+        frag.append(day);
+      }
+      agendaEl.replaceChildren(frag);
+    }
+
+    async function refresh() {
+      try {
+        calendarText = await loadCalendar();
+      } catch (e) {
+        console.error(e);
+        if (!calendarText) {
+          agendaEl.replaceChildren(el('p', 'message', 'Calendar unavailable. Retrying…'));
+          return;
+        }
+      }
+      render();
+    }
+
+    refresh();
+    setInterval(refresh, RELOAD_MINUTES * 60 * 1000);
+    setInterval(render, 60 * 1000);   // drop finished events and update "Now"
   </script>
 </body>
 </html>

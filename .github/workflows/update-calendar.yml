@@ -2,7 +2,7 @@ name: Update calendar
 
 on:
   schedule:
-    - cron: '*/15 * * * *'   # every 15 minutes (GitHub may run it a little late)
+        - cron: '7,22,37,52 * * * *'   # every 15 minutes, off the busy top of the hour
   workflow_dispatch:          # adds a "Run workflow" button
 
 permissions:

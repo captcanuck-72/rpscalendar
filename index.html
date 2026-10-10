@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upcoming Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Sampled from the Pickcel side panels (slate blue at top fading to teal) */
+      --panel-top: #2f4d6c;
+      --panel-mid: #3b6a82;
+      --panel-bottom: #4b8792;
+      --card: rgba(255, 255, 255, 0.12);
+      --card-border: rgba(255, 255, 255, 0.18);
+      --text: #ffffff;
+      --text-soft: rgba(255, 255, 255, 0.78);
+      --gutter: clamp(10px, 2.5vw, 28px);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+
+    body {
+      background: linear-gradient(180deg, var(--panel-top) 0%, var(--panel-mid) 55%, var(--panel-bottom) 100%) fixed;
+      color: var(--text);
+      font-family: "Urbanist", system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: var(--gutter);
+      gap: var(--gutter);
+    }
+
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .title {
+      font-family: "Oswald", sans-serif;
+      font-weight: 600;
+      font-size: clamp(1.6rem, 4.5vw, 3rem);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      font-weight: 600;
+      font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+      color: var(--text-soft);
+    }
+
+    .clock {
+      text-align: right;
+      font-family: "Oswald", sans-serif;
+      line-height: 1;
+    }
+
+    .clock .time {
+      font-size: clamp(1.6rem, 4.5vw, 3rem);
+      font-weight: 600;
+    }
+
+    .clock .ampm {
+      font-family: "Urbanist", sans-serif;
+      font-size: 0.4em;
+      margin-left: 2px;
+      font-weight: 600;
+    }
+
+    .clock .date {
+      font-family: "Urbanist", sans-serif;
+      font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+      color: var(--text-soft);
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .card {
+      flex: 1;
+      display: flex;
+      min-height: 360px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: clamp(6px, 1.2vw, 14px);
+      backdrop-filter: blur(4px);
+    }
+
+    .calendar-wrap {
+      flex: 1;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .calendar-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Optional dark look: add ?theme=dark to the page URL */
+    body.dark .calendar-wrap { background: #1d2f40; }
+    body.dark .calendar-wrap iframe { filter: invert(0.9) hue-rotate(180deg); }
+
+    /* Hide header with ?header=0 if the Pickcel zone is small */
+    body.no-header header { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 class="title">Upcoming Events</h1>
+      <p class="subtitle">Rothesay Park School</p>
+    </div>
+    <div class="clock" aria-live="off">
+      <div class="time"><span id="time">--:--</span><span class="ampm" id="ampm"></span></div>
+      <div class="date" id="date"></div>
+    </div>
+  </header>
+
+  <main class="card">
+    <div class="calendar-wrap">
+      <iframe
+        title="Calendar agenda"
+        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=America%2FHalifax&showPrint=0&showTitle=0&showCalendars=0&showTabs=0&showTz=0&showNav=0&mode=AGENDA&src=Y29udGFjdEBtYXJrYWJhdGVzLmNh&color=%230b8043"
+        scrolling="no"
+        loading="eager"></iframe>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    if (params.get('theme') === 'dark') document.body.classList.add('dark');
+    if (params.get('header') === '0') document.body.classList.add('no-header');
+
+    const tz = 'America/Halifax';
+    function tick() {
+      const now = new Date();
+      const parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: tz, hour: 'numeric', minute: '2-digit', hour12: true
+      }).formatToParts(now);
+      const get = t => (parts.find(p => p.type === t) || {}).value || '';
+      document.getElementById('time').textContent = get('hour') + ':' + get('minute');
+      document.getElementById('ampm').textContent = get('dayPeriod').replace(/\./g, '').toLowerCase();
+      document.getElementById('date').textContent = now.toLocaleDateString('en-CA', {
+        timeZone: tz, weekday: 'long', month: 'long', day: 'numeric'
+      });
+    }
+    tick();
+    setInterval(tick, 10000);
+
+    // Refresh the calendar every 15 minutes so new events appear on the display
+    setInterval(() => {
+      const f = document.querySelector('.calendar-wrap iframe');
+      f.src = f.src;
+    }, 15 * 60 * 1000);
+  </script>
+</body>
+</html>

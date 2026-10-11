@@ -127,6 +127,58 @@
       backdrop-filter: blur(3px);
     }
 
+    .slots-head {
+      font-family: "Oswald", sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0.2rem 0 -0.2rem;
+    }
+
+    .day.slot { grid-template-columns: 7.6rem 2.2rem 1fr auto; }
+    .day.past { opacity: 0.45; }
+
+    .slot .label {
+      display: block;
+      font-family: "Oswald", sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .slot .time {
+      display: block;
+      color: var(--text-soft);
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-top: 0.1rem;
+    }
+
+    .slot .badge {
+      font-family: "Oswald", sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: #22384f;
+      padding: 0.05rem 0.35rem;
+      border-radius: 4px;
+      margin-left: 0.3rem;
+      vertical-align: 0.1rem;
+    }
+
+    .slot .feels {
+      display: block;
+      font-family: "Urbanist", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      text-align: right;
+    }
+
     .day .name {
       font-family: "Oswald", sans-serif;
       font-weight: 500;
@@ -201,8 +253,21 @@
     const LATITUDE = 45.383;          // Rothesay, NB
     const LONGITUDE = -66.000;
     const TZ = 'America/Halifax';
-    const FORECAST_DAYS = 4;          // days shown under today
     const RELOAD_MINUTES = 15;
+
+    // School-day times shown in the forecast (24-hour clock)
+    const SLOTS = [
+      { label: 'Morning break', start: '10:35', end: '10:50' },
+      { label: 'Lunch',         start: '11:50', end: '12:30' },
+      { label: 'Dismissal',     start: '14:40', end: '14:45' }
+    ];
+    // After this time the forecast switches to the next school day
+    const SWITCH_AT = '14:45';
+
+    // Days marked NO CLASSES in the calendar are skipped when finding the next school day.
+    // Closures whose title contains any of these are ignored (they are for other grades).
+    const CALENDAR_FILE = 'calendar.ics';
+    const IGNORE_CLOSURES_WITH = ['9-12:'];
     // ---------------------------------------------------------------------
 
     const params = new URLSearchParams(location.search);
@@ -211,8 +276,9 @@
     const API = 'https://api.open-meteo.com/v1/forecast'
       + `?latitude=${LATITUDE}&longitude=${LONGITUDE}`
       + '&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m,is_day'
+      + '&hourly=temperature_2m,apparent_temperature,weather_code,precipitation_probability'
       + '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
-      + `&timezone=${encodeURIComponent(TZ)}&forecast_days=${FORECAST_DAYS + 1}&wind_speed_unit=kmh`;
+      + `&timezone=${encodeURIComponent(TZ)}&forecast_days=10&wind_speed_unit=kmh`;
 
     // WMO weather codes -> words and icon
     const CODES = {
@@ -254,6 +320,76 @@
 
     const root = document.getElementById('weather');
 
+    // ---- Dates and times in Atlantic time ----
+    const pad = n => String(n).padStart(2, '0');
+    const toMin = hhmm => { const [h, m] = hhmm.split(':').map(Number); return h * 60 + m; };
+    const fmtClock = hhmm => {
+      const [h, m] = hhmm.split(':').map(Number);
+      return `${h % 12 || 12}:${pad(m)}`;
+    };
+    function localNow() {
+      const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+        timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+      }).formatToParts(new Date()).map(x => [x.type, x.value]));
+      return { key: `${p.year}-${p.month}-${p.day}`, min: Number(p.hour) * 60 + Number(p.minute) };
+    }
+    const keyToDate = key => { const [y, m, d] = key.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d, 12)); };
+    const addDays = (key, n) => { const d = keyToDate(key); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+    const weekdayName = key => keyToDate(key).toLocaleDateString('en-CA', { weekday: 'long', timeZone: 'UTC' });
+
+    // ---- No-classes days from the calendar ----
+    let closures = new Set();
+    async function loadClosures() {
+      try {
+        const res = await fetch(CALENDAR_FILE + '?t=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) return;
+        const text = (await res.text()).replace(/\r?\n[ \t]/g, '');
+        const found = new Set();
+        for (const block of text.split('BEGIN:VEVENT').slice(1)) {
+          const summary = (block.match(/^SUMMARY[^:]*:(.*)$/m) || [])[1] || '';
+          if (!/no classes|no school|school closed/i.test(summary)) continue;
+          if (IGNORE_CLOSURES_WITH.some(w => summary.includes(w))) continue;
+          const s = (block.match(/^DTSTART;VALUE=DATE:(\d{8})/m) || [])[1];
+          if (!s) continue;
+          const e = (block.match(/^DTEND;VALUE=DATE:(\d{8})/m) || [])[1];
+          const toKey = v => `${v.slice(0, 4)}-${v.slice(4, 6)}-${v.slice(6, 8)}`;
+          let k = toKey(s);
+          const end = e ? toKey(e) : addDays(k, 1);
+          for (let i = 0; k < end && i < 60; i++, k = addDays(k, 1)) found.add(k);
+        }
+        closures = found;
+      } catch (e) { /* no calendar: just skip weekends */ }
+    }
+
+    const isSchoolDay = key => {
+      const dow = keyToDate(key).getUTCDay();
+      return dow !== 0 && dow !== 6 && !closures.has(key);
+    };
+
+    // Today until dismissal, otherwise the next school day
+    function targetDay(now) {
+      if (isSchoolDay(now.key) && now.min < toMin(SWITCH_AT)) return now.key;
+      let k = addDays(now.key, 1);
+      for (let i = 0; i < 30 && !isSchoolDay(k); i++) k = addDays(k, 1);
+      return k;
+    }
+
+    function slotHeading(key, now) {
+      if (key === now.key) return 'Today at school';
+      if (key === addDays(now.key, 1)) return 'Tomorrow at school';
+      const days = Math.round((keyToDate(key) - keyToDate(now.key)) / 864e5);
+      return days < 7 ? `${weekdayName(key)} at school`
+        : `${weekdayName(key)}, ${keyToDate(key).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', timeZone: 'UTC' })} at school`;
+    }
+
+    // Hourly reading closest to the middle of the slot
+    function slotIndex(hourly, key, slot) {
+      const mid = (toMin(slot.start) + toMin(slot.end)) / 2;
+      const hour = Math.min(23, Math.round(mid / 60));
+      return hourly.time.indexOf(`${key}T${pad(hour)}:00`);
+    }
+
     function render(data) {
       const c = data.current;
       const d = data.daily;
@@ -273,26 +409,45 @@
         </section>
         <ul class="forecast">`;
 
-      for (let i = 1; i < d.time.length; i++) {
-        const [desc, t] = describe(d.weather_code[i]);
-        const pop = d.precipitation_probability_max[i];
+      const now = localNow();
+      const key = targetDay(now);
+      const h = data.hourly;
+      const isToday = key === now.key;
+
+      html = html.replace('<ul class="forecast">', `<h2 class="slots-head">${slotHeading(key, now)}</h2><ul class="forecast">`);
+
+      let shown = 0;
+      for (const slot of SLOTS) {
+        const i = slotIndex(h, key, slot);
+        if (i < 0) continue;
+        const [desc, t] = describe(h.weather_code[i]);
+        const pop = h.precipitation_probability[i];
+        const temp = round(h.temperature_2m[i]);
+        const feels = round(h.apparent_temperature[i]);
+        const past = isToday && now.min >= toMin(slot.end);
+        const live = isToday && now.min >= toMin(slot.start) && now.min < toMin(slot.end);
         html += `
-          <li class="day">
-            <span class="name">${dayName(d.time[i])}</span>
+          <li class="day slot${past ? ' past' : ''}">
+            <span class="when"><span class="label">${slot.label}${live ? '<span class="badge">Now</span>' : ''}</span><span class="time">${fmtClock(slot.start)}</span></span>
             ${icon(t)}
             <span class="desc">${desc}${pop >= 20 ? `<span class="pop">${pop}% chance of precip.</span>` : ''}</span>
-            <span class="range">${round(d.temperature_2m_max[i])}°<span class="lo">${round(d.temperature_2m_min[i])}°</span></span>
+            <span class="range">${temp}°${Math.abs(feels - temp) >= 3 ? `<span class="feels">feels ${feels}°</span>` : ''}</span>
           </li>`;
+        shown++;
       }
+      if (!shown) html += '<li class="message">Forecast for the next school day is not available yet.</li>';
       root.innerHTML = html + '</ul>';
     }
 
     let loaded = false;
+    let lastData = null;
     async function refresh() {
+      await loadClosures();
       try {
         const res = await fetch(API, { cache: 'no-store' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        render(await res.json());
+        lastData = await res.json();
+        render(lastData);
         loaded = true;
       } catch (e) {
         console.error(e);
@@ -304,6 +459,8 @@
 
     refresh();
     setInterval(refresh, RELOAD_MINUTES * 60 * 1000);
+    // Dim finished times and switch to the next day at dismissal without waiting for a reload
+    setInterval(() => { if (lastData) render(lastData); }, 60 * 1000);
   </script>
 </body>
 </html>

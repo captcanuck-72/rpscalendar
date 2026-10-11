@@ -137,7 +137,9 @@
       margin: 0.2rem 0 -0.2rem;
     }
 
-    .day.slot { grid-template-columns: 7.6rem 2.2rem 1fr auto; }
+    .day.slot { grid-template-columns: minmax(0, 1fr) 2.8rem minmax(0, 1fr); }
+    .slot .icon { width: 2.8rem; height: 2.8rem; }
+    .slot .range { justify-self: end; text-align: right; }
     .day.past { opacity: 0.45; }
 
     .slot .label {
@@ -420,8 +422,7 @@
       for (const slot of SLOTS) {
         const i = slotIndex(h, key, slot);
         if (i < 0) continue;
-        const [desc, t] = describe(h.weather_code[i]);
-        const pop = h.precipitation_probability[i];
+        const [, t] = describe(h.weather_code[i]);
         const temp = round(h.temperature_2m[i]);
         const feels = round(h.apparent_temperature[i]);
         const past = isToday && now.min >= toMin(slot.end);
@@ -430,7 +431,6 @@
           <li class="day slot${past ? ' past' : ''}">
             <span class="when"><span class="label">${slot.label}${live ? '<span class="badge">Now</span>' : ''}</span><span class="time">${fmtClock(slot.start)}</span></span>
             ${icon(t)}
-            <span class="desc">${desc}${pop >= 20 ? `<span class="pop">${pop}% chance of precip.</span>` : ''}</span>
             <span class="range">${temp}°${Math.abs(feels - temp) >= 3 ? `<span class="feels">feels ${feels}°</span>` : ''}</span>
           </li>`;
         shown++;

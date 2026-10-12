@@ -45,11 +45,13 @@
 
     h1 {
       font-family: "Oswald", sans-serif;
-      font-weight: 600;
-      font-size: 2.1rem;
+      font-weight: 500;
+      font-size: 1.05rem;
       line-height: 1;
       margin: 0;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
       position: relative;
     }
 
@@ -137,10 +139,11 @@
       margin: 0.2rem 0 -0.2rem;
     }
 
+    .slots-day { color: var(--text-soft); margin-left: 0.35rem; }
+
     .day.slot { grid-template-columns: minmax(0, 1fr) 2.8rem minmax(0, 1fr); }
     .slot .icon { width: 2.8rem; height: 2.8rem; }
     .slot .range { justify-self: end; text-align: right; }
-    .day.past { opacity: 0.45; }
 
     .slot .label {
       display: block;
@@ -245,7 +248,7 @@
     <path style="fill: var(--hill-near)" d="M0 95 C80 70 160 78 240 92 C310 104 360 88 400 80 L400 120 L0 120 Z"/>
   </svg>
 
-  <h1>Weather</h1>
+  <h1>Current Weather</h1>
   <main id="weather" aria-live="polite">
     <p class="message">Loading weather…</p>
   </main>
@@ -378,11 +381,12 @@
     }
 
     function slotHeading(key, now) {
-      if (key === now.key) return 'Today at school';
-      if (key === addDays(now.key, 1)) return 'Tomorrow at school';
+      const label = '<span class="slots-day">';
+      if (key === now.key) return `Forecast ${label}Today</span>`;
+      if (key === addDays(now.key, 1)) return `Forecast ${label}Tomorrow</span>`;
       const days = Math.round((keyToDate(key) - keyToDate(now.key)) / 864e5);
-      return days < 7 ? `${weekdayName(key)} at school`
-        : `${weekdayName(key)}, ${keyToDate(key).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', timeZone: 'UTC' })} at school`;
+      return days < 7 ? `Forecast ${label}${weekdayName(key)}</span>`
+        : `Forecast ${label}${weekdayName(key)}, ${keyToDate(key).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', timeZone: 'UTC' })}</span>`;
     }
 
     // Hourly reading closest to the middle of the slot
@@ -395,14 +399,13 @@
     function render(data) {
       const c = data.current;
       const d = data.daily;
-      const [condition, type] = describe(c.weather_code);
+      const [, type] = describe(c.weather_code);
       const isDay = c.is_day === 1;
 
       let html = `
         <section class="now">
           ${icon(type, isDay)}
           <div class="temp">${round(c.temperature_2m)}<sup>°C</sup></div>
-          <div class="condition">${condition}</div>
           <div class="details">
             <span>High <b>${round(d.temperature_2m_max[0])}°</b> · Low <b>${round(d.temperature_2m_min[0])}°</b></span>
             <span>Feels like <b>${round(c.apparent_temperature)}°</b></span>
@@ -425,10 +428,9 @@
         const [, t] = describe(h.weather_code[i]);
         const temp = round(h.temperature_2m[i]);
         const feels = round(h.apparent_temperature[i]);
-        const past = isToday && now.min >= toMin(slot.end);
         const live = isToday && now.min >= toMin(slot.start) && now.min < toMin(slot.end);
         html += `
-          <li class="day slot${past ? ' past' : ''}">
+          <li class="day slot">
             <span class="when"><span class="label">${slot.label}${live ? '<span class="badge">Now</span>' : ''}</span><span class="time">${fmtClock(slot.start)}</span></span>
             ${icon(t)}
             <span class="range">${temp}°${Math.abs(feels - temp) >= 3 ? `<span class="feels">feels ${feels}°</span>` : ''}</span>

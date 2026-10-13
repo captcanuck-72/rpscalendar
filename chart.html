@@ -289,10 +289,18 @@ Grade 8,35,`;
     function sheetLink() {
       // Read everything after "sheet=" so a pasted Google link with its own "&" parts still works
       let url = '';
-      const m = location.search.match(/[?&]sheet=(.*)$/);
+      // Simplest form: ?id=2PACX-... (the long code from the published link)
+      const id = params.get('id');
+      if (id && /^[\w-]+$/.test(id)) {
+        const gid = params.get('gid');
+        url = `https://docs.google.com/spreadsheets/d/e/${id}/pub?output=csv` + (gid ? `&gid=${encodeURIComponent(gid)}` : '');
+      }
+      const m = !url && location.search.match(/[?&]sheet=(.*)$/);
       if (m) {
-        url = m[1].replace(/&(bars|sort|max)=[^&]*/g, '');
-        if (/^https?%3A/i.test(url)) { try { url = decodeURIComponent(url); } catch (e) {} }
+        url = m[1].replace(/&(bars|sort|max|v)=[^&]*/g, '');
+        // Undo any encoding a signage player or browser added to the pasted link
+        if (/%[0-9a-f]{2}/i.test(url)) { try { url = decodeURIComponent(url); } catch (e) {} }
+        url = url.replace(/&amp;/g, '&');
       }
       url = url || SHEET_URL;
       if (!url) return '';

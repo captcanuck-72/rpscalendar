@@ -307,20 +307,26 @@ Grade 8,35,`;
       const url = sheetLink();
       $('sample').hidden = !!url;
       if (!url) { last = readSheet(SAMPLE); render(last); return; }
-      try {
-        const res = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const text = await res.text();
-        if (/^\s*</.test(text)) throw new Error('not CSV');
-        last = readSheet(text);
-        render(last);
-      } catch (e) {
-        if (!last) {
-          $('chart').className = 'chart';
-          $('chart').innerHTML = '<p class="message">Couldn\'t load the sheet. Check that it is published to the web as CSV and the link is correct.</p>';
-        }
-        // Otherwise keep showing the last chart
+      // Plain requests only: extra cache headers make Safari/iPad ask Google for permission
+      // first (a "preflight"), which Google's published-sheet links refuse.
+      const tries = [url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), url];
+      let problem = '';
+      for (const attempt of tries) {
+        try {
+          const res = await fetch(attempt);
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const text = await res.text();
+          if (/^\s*</.test(text)) throw new Error('got a web page instead of CSV');
+          last = readSheet(text);
+          render(last);
+          return;
+        } catch (e) { problem = e.message || String(e); }
       }
+      if (!last) {
+        $('chart').className = 'chart';
+        $('chart').innerHTML = '<p class="message">Couldn\'t load the sheet. Check that it is published to the web as CSV and the link is correct.<br><small>(' + esc(problem) + ')</small></p>';
+      }
+      // Otherwise keep showing the last chart
     }
 
     refresh();

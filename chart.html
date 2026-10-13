@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Urbanist:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Same palette as the weather and calendar pages */
+      --panel-top: #2f4d6c;
+      --panel-mid: #3b6a82;
+      --panel-bottom: #4b8792;
+      --card: rgba(255, 255, 255, 0.10);
+      --card-border: rgba(255, 255, 255, 0.16);
+      --text: #ffffff;
+      --text-soft: rgba(255, 255, 255, 0.72);
+      --accent: #f5c242;
+      --gutter: clamp(10px, 3vmin, 28px);
+      font-size: clamp(14px, 1.6vmin + 8px, 26px);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+
+    body {
+      background: linear-gradient(180deg, var(--panel-top) 0%, var(--panel-mid) 55%, var(--panel-bottom) 100%) fixed;
+      color: var(--text);
+      font-family: "Urbanist", system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      height: 100dvh;
+      padding: var(--gutter);
+      gap: calc(var(--gutter) * 0.7);
+      overflow: hidden;
+    }
+
+    header { flex: none; }
+
+    h1 {
+      font-family: "Oswald", sans-serif;
+      font-weight: 600;
+      font-size: 1.9rem;
+      line-height: 1.05;
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .subtitle {
+      margin: 0.25rem 0 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .chart {
+      flex: 1 1 auto;
+      min-height: 0;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: calc(var(--gutter) * 0.8);
+      display: flex;
+    }
+
+    .bar {
+      background: var(--c, var(--accent));
+      border-radius: 6px;
+      transition: width 0.9s ease, height 0.9s ease;
+    }
+
+    .value {
+      font-family: "Oswald", sans-serif;
+      font-weight: 500;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .label {
+      font-weight: 700;
+      line-height: 1.15;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow-wrap: anywhere;
+    }
+
+    /* ---- Horizontal bars: label on the left, bar to the right ---- */
+    .chart.h { flex-direction: column; gap: 0.4em; font-size: var(--row-font, 1rem); }
+    .chart.h .row {
+      flex: 1 1 0;
+      min-height: 0;
+      max-height: 4.2em;
+      display: grid;
+      grid-template-columns: minmax(0, 32%) minmax(0, 1fr);
+      align-items: center;
+      gap: 0.7em;
+    }
+    .chart.h .track { display: flex; align-items: center; gap: 0.45em; height: 100%; min-width: 0; }
+    .chart.h .bar { height: min(72%, 2.4em); width: calc((100% - 4.2em) * var(--p)); min-width: 3px; }
+    .chart.h .value { font-size: 1.1em; }
+
+    /* ---- Vertical bars: columns with the label underneath ---- */
+    .chart.v { flex-direction: row; gap: 0.8em; font-size: var(--col-font, 1rem); }
+    .chart.v .col {
+      flex: 1 1 0;
+      min-width: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 0.4em;
+    }
+    .chart.v .track { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; min-height: 0; gap: 0.3em; }
+    .chart.v .bar { width: min(80%, 5em); height: calc((100% - 1.8em) * var(--p)); min-height: 3px; }
+    .chart.v .value { font-size: 1.15em; }
+    .chart.v .label { text-align: center; font-size: 0.85em; }
+
+    .message {
+      margin: auto;
+      text-align: center;
+      color: var(--text-soft);
+      font-weight: 600;
+      max-width: 30em;
+      line-height: 1.4;
+    }
+
+    .sample {
+      flex: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">&nbsp;</h1>
+    <p class="subtitle" id="subtitle" hidden></p>
+  </header>
+  <main class="chart" id="chart" aria-live="polite"></main>
+  <p class="sample" id="sample" hidden>Sample data. Add your Google Sheet link to show your own chart.</p>
+
+  <script>
+    /* =====================================================================
+       SETTINGS
+       Paste your Google Sheet's "Publish to web" CSV link between the quotes,
+       or add it to the page address instead:  chart.html?sheet=YOUR-LINK
+       Sheet layout:
+         A1 = chart title          B1 = subtitle (optional)
+         From row 2: A = label     B = number     C = bar colour (optional)
+       A label that is a colour name (Red, Blue, Yellow...) is drawn in that colour.
+       Rows where column B is not a number are skipped, so a header row is fine.
+       ===================================================================== */
+    const SHEET_URL = '';
+    const RELOAD_MINUTES = 5;
+
+    // Optional page-address settings:
+    //   &bars=horizontal or &bars=vertical   (default: picks whichever fits the screen)
+    //   &sort=high   (largest first)   &sort=low   (smallest first)
+    //   &max=100     (fixed top of the scale, e.g. for percentages or a goal)
+    const params = new URLSearchParams(location.search);
+
+    const SAMPLE = `Sample Chart,Change this in your sheet
+Label,Value,Colour
+Grade 6,42,
+Grade 7,57,
+Grade 8,35,`;
+
+    const COLOURS = {
+      gold: '#f5c242', yellow: '#f5c242', red: '#ef6a5b', orange: '#f39a4a',
+      green: '#5fd39b', blue: '#6fb6ff', purple: '#b38cff', pink: '#f28cc8',
+      teal: '#5ad1c9', white: '#ffffff', grey: '#c7d2da', gray: '#c7d2da'
+    };
+
+    const $ = id => document.getElementById(id);
+
+    function parseCSV(text) {
+      const rows = [];
+      let row = [], field = '', inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        if (inQuotes) {
+          if (ch === '"' && text[i + 1] === '"') { field += '"'; i++; }
+          else if (ch === '"') inQuotes = false;
+          else field += ch;
+        } else if (ch === '"') inQuotes = true;
+        else if (ch === ',') { row.push(field); field = ''; }
+        else if (ch === '\n' || ch === '\r') {
+          if (ch === '\r' && text[i + 1] === '\n') i++;
+          row.push(field); rows.push(row); row = []; field = '';
+        } else field += ch;
+      }
+      if (field !== '' || row.length) { row.push(field); rows.push(row); }
+      return rows.map(r => r.map(c => c.trim()));
+    }
+
+    function readSheet(text) {
+      const rows = parseCSV(text);
+      const title = (rows[0] && rows[0][0]) || '';
+      const subtitle = (rows[0] && rows[0][1]) || '';
+      const items = [];
+      let percent = false;
+      for (const r of rows.slice(1)) {
+        const label = r[0] || '';
+        const raw = (r[1] || '').replace(/[$,\s]/g, '');
+        if (!label || raw === '') continue;
+        const isPct = raw.endsWith('%');
+        const value = parseFloat(isPct ? raw.slice(0, -1) : raw);
+        if (!isFinite(value)) continue;
+        if (isPct) percent = true;
+        const c = (r[2] || '').toLowerCase();
+        // Column C wins; otherwise a label that is a colour name (e.g. "Red") uses that colour
+        const colour = COLOURS[c] || (/^#[0-9a-f]{3,8}$/.test(c) ? c : '') || COLOURS[label.toLowerCase()] || '';
+        items.push({ label, value: Math.max(0, value), colour });
+      }
+      return { title, subtitle, items, percent };
+    }
+
+    const esc = s => s.replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+
+    function fmt(n, percent) {
+      const s = n.toLocaleString('en-CA', { maximumFractionDigits: 1 });
+      return percent ? s + '%' : s;
+    }
+
+    function render(data) {
+      $('title').textContent = data.title || '\u00a0';
+      $('subtitle').textContent = data.subtitle;
+      $('subtitle').hidden = !data.subtitle;
+      document.title = data.title || 'Chart';
+
+      const chart = $('chart');
+      let items = data.items.slice();
+      if (!items.length) {
+        chart.className = 'chart';
+        chart.innerHTML = '<p class="message">No numbers found in the sheet yet. Put labels in column A and numbers in column B, starting at row 2.</p>';
+        return;
+      }
+      const sort = params.get('sort');
+      if (sort === 'high') items.sort((a, b) => b.value - a.value);
+      if (sort === 'low') items.sort((a, b) => a.value - b.value);
+
+      let max = parseFloat(params.get('max'));
+      const top = Math.max(...items.map(i => i.value));
+      if (!isFinite(max) || max <= 0) max = data.percent && top <= 100 ? 100 : top || 1;
+      max = Math.max(max, top);
+
+      // Pick the layout: vertical columns on wide screens with few bars, otherwise horizontal rows
+      const wide = innerWidth > innerHeight * 1.1;
+      const choice = params.get('bars');
+      const vertical = choice === 'vertical' || (choice !== 'horizontal' && wide && items.length <= 8);
+
+      const box = chart.getBoundingClientRect();
+      if (vertical) {
+        chart.style.setProperty('--col-font', Math.max(11, Math.min(26, box.width / items.length / 5.5)) + 'px');
+      } else {
+        chart.style.setProperty('--row-font', Math.max(11, Math.min(26, box.height / items.length / 2.6)) + 'px');
+      }
+
+      const layout = vertical ? 'v' : 'h';
+      const fresh = chart.dataset.layout !== layout || chart.children.length !== items.length;
+      chart.className = 'chart ' + layout;
+      chart.dataset.layout = layout;
+
+      if (fresh) {
+        chart.innerHTML = items.map(() => vertical
+          ? '<div class="col"><div class="track"><span class="value"></span><div class="bar" style="--p:0"></div></div><span class="label"></span></div>'
+          : '<div class="row"><span class="label"></span><div class="track"><div class="bar" style="--p:0"></div><span class="value"></span></div></div>'
+        ).join('');
+      }
+
+      [...chart.children].forEach((el, i) => {
+        const it = items[i];
+        el.querySelector('.label').innerHTML = esc(it.label);
+        el.querySelector('.value').textContent = fmt(it.value, data.percent);
+        const bar = el.querySelector('.bar');
+        bar.style.setProperty('--c', it.colour || 'var(--accent)');
+        const p = (it.value / max).toFixed(4);
+        // Let the browser draw the empty bars first so they grow in
+        if (fresh) requestAnimationFrame(() => requestAnimationFrame(() => bar.style.setProperty('--p', p)));
+        else bar.style.setProperty('--p', p);
+      });
+    }
+
+    function sheetLink() {
+      // Read everything after "sheet=" so a pasted Google link with its own "&" parts still works
+      let url = '';
+      const m = location.search.match(/[?&]sheet=(.*)$/);
+      if (m) {
+        url = m[1].replace(/&(bars|sort|max)=[^&]*/g, '');
+        if (/^https?%3A/i.test(url)) { try { url = decodeURIComponent(url); } catch (e) {} }
+      }
+      url = url || SHEET_URL;
+      if (!url) return '';
+      // Accept the web-page version of a published sheet and switch it to CSV
+      url = url.replace(/\/pubhtml(\?|$)/, '/pub$1');
+      if (/\/pub(\?|$)/.test(url) && !/output=csv/.test(url)) url += (url.includes('?') ? '&' : '?') + 'output=csv';
+      return url;
+    }
+
+    let last = null;
+    async function refresh() {
+      const url = sheetLink();
+      $('sample').hidden = !!url;
+      if (!url) { last = readSheet(SAMPLE); render(last); return; }
+      try {
+        const res = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        if (/^\s*</.test(text)) throw new Error('not CSV');
+        last = readSheet(text);
+        render(last);
+      } catch (e) {
+        if (!last) {
+          $('chart').className = 'chart';
+          $('chart').innerHTML = '<p class="message">Couldn\'t load the sheet. Check that it is published to the web as CSV and the link is correct.</p>';
+        }
+        // Otherwise keep showing the last chart
+      }
+    }
+
+    refresh();
+    setInterval(refresh, RELOAD_MINUTES * 60 * 1000);
+    let resizeTimer;
+    addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => last && render(last), 200); });
+  </script>
+</body>
+</html>

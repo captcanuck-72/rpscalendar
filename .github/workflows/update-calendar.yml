@@ -14,12 +14,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download calendar feed
+      - name: Download and merge calendar feeds
         run: |
-          curl -fsSL "https://calendar.google.com/calendar/ical/c_7c8b7d33d8465f79c97c8d1d0435c3f2c1790951557683e76d1e07b6e459b50d%40group.calendar.google.com/public/basic.ics" -o calendar.tmp
-          # DTSTAMP changes on every download; drop it so we only commit real changes
-          grep -v '^DTSTAMP:' calendar.tmp > calendar.ics
-          rm calendar.tmp
+          # Main feed: Google Calendar (required)
+          curl -fsSL "https://calendar.google.com/calendar/ical/c_7c8b7d33d8465f79c97c8d1d0435c3f2c1790951557683e76d1e07b6e459b50d%40group.calendar.google.com/public/basic.ics" -o google.tmp
+          tr -d '\r' < google.tmp > google.txt
+
+          # Extra feed: Outlook calendar (optional; if it fails, the Google events still update)
+          : > extra.txt
+          if curl -fsSL "https://outlook.office365.com/owa/calendar/5cefd52b341547fd834f3096ce4213fb@nbed.nb.ca/11051842c412463a8d648748433edb3d9324836747943603002/calendar.ics" -o outlook.tmp \
+             && grep -q 'BEGIN:VCALENDAR' outlook.tmp; then
+            tr -d '\r' < outlook.tmp \
+              | awk '/^BEGIN:(VTIMEZONE|VEVENT)$/{on=1} on{print} /^END:(VTIMEZONE|VEVENT)$/{on=0}' > extra.txt
+          else
+            echo "::warning::Outlook feed could not be downloaded; using Google events only"
+          fi
+
+          # Combine into one calendar. DTSTAMP changes on every download; drop it so we only commit real changes
+          { grep -v '^END:VCALENDAR' google.txt; cat extra.txt; echo 'END:VCALENDAR'; } \
+            | grep -v '^DTSTAMP:' > calendar.ics
+          rm -f google.tmp google.txt outlook.tmp extra.txt
 
       - name: Commit if changed
         run: |

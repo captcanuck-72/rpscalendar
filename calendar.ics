@@ -7,6 +7,23 @@ X-WR-CALNAME:RPS & District Calendar
 X-WR-TIMEZONE:America/Halifax
 X-WR-CALDESC:For use with pickcel and lobby tv.
 BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270201
+DTEND;VALUE=DATE:20270203
+UID:asds-2026-2027-20@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: 9-12: Turnaround days - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
 DTSTART;VALUE=DATE:20260909
 DTEND;VALUE=DATE:20260910
 UID:asds-2026-2027-5@school-calendar.local
@@ -24,6 +41,358 @@ SUMMARY:ASD-S: Grades 7-8 & 10-12: First day
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+UID:chi66d34cdgjgbb46pj3gb9kcko3eb9pcksm6b9n68rmcc1m6op3aphjcg@google.com
+CREATED:20261015T184602Z
+LAST-MODIFIED:20261015T184602Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Take Me Outside Day
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+UID:asds-2026-2027-13@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Parent/teacher interviews and district-based / school-based pro
+ fessional learning.\nSource: ASD-S family school calendar 2026-2027 (May 20
+ \, 2026).\nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-Sch
+ ool-Calendar-2026-2027-.pdf\nStatic import\; later district changes will no
+ t sync automatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: 9-12: Interviews / professional learning - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270524
+DTEND;VALUE=DATE:20270525
+UID:asds-2026-2027-30@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Victoria Day - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+UID:asds-2026-2027-1@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Labour Day - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260918
+DTEND;VALUE=DATE:20260919
+UID:asds-2026-2027-6@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: School improvement planning - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261013
+UID:asds-2026-2027-8@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Thanksgiving - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20261014T183000Z
+DTEND:20261014T193000Z
+UID:49ci6terqqnvv45gmded00oh36@google.com
+CREATED:20261010T205242Z
+LAST-MODIFIED:20261010T205242Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Sweet Caroline Game
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270312
+DTEND;VALUE=DATE:20270313
+UID:asds-2026-2027-24@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: K-8: Report preparation - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261103
+UID:asds-2026-2027-10@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: EECD professional learning - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270101
+DTEND;VALUE=DATE:20270102
+UID:asds-2026-2027-17@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Holiday - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270329
+DTEND;VALUE=DATE:20270330
+UID:asds-2026-2027-26@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Easter Monday - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+UID:asds-2026-2027-11@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Remembrance Day - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261027
+DTEND;VALUE=DATE:20261028
+UID:3jnkfe2m2kff4ibkav1tti629v@google.com
+CREATED:20261010T205344Z
+LAST-MODIFIED:20261021T172934Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Grade 7 Immunizations
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261221
+DTEND;VALUE=DATE:20270101
+UID:asds-2026-2027-16@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Winter holidays - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261029
+DTEND;VALUE=DATE:20261030
+UID:16kpdlrkm8gkifq66nss572nld@google.com
+CREATED:20261010T205446Z
+LAST-MODIFIED:20261010T205446Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Social
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270409
+DTEND;VALUE=DATE:20270410
+UID:asds-2026-2027-27@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Full-day parent/teacher interviews and professional learning.\n
+ Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).\nhttps://as
+ ds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calendar-2026-202
+ 7-.pdf\nStatic import\; later district changes will not sync automatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: K-12: Interviews / professional learning - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270510
+DTEND;VALUE=DATE:20270511
+UID:asds-2026-2027-29@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: NBTA Branch Day - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270614
+DTEND;VALUE=DATE:20270619
+UID:asds-2026-2027-31@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: 9-12: Assessment / learning demonstration / recovery
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270326
+DTEND;VALUE=DATE:20270327
+UID:asds-2026-2027-25@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Good Friday - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260908
+DTEND;VALUE=DATE:20260910
+UID:asds-2026-2027-4@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Half of students attend on either day. Follow your school's ass
+ igned day and plan.\nSource: ASD-S family school calendar 2026-2027 (May 20
+ \, 2026).\nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-Sch
+ ool-Calendar-2026-2027-.pdf\nStatic import\; later district changes will no
+ t sync automatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Kindergarten: Staggered entry
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+UID:asds-2026-2027-12@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: K-8: Report preparation - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270625
+DTEND;VALUE=DATE:20270626
+UID:asds-2026-2027-33@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Full day.\nSource: ASD-S family school calendar 2026-2027 (May 
+ 20\, 2026).\nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-S
+ chool-Calendar-2026-2027-.pdf\nStatic import\; later district changes will 
+ not sync automatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: K-8: Last student day / final report cards
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
 DTSTART;VALUE=DATE:20270301
 DTEND;VALUE=DATE:20270306
 UID:asds-2026-2027-23@school-calendar.local
@@ -38,6 +407,40 @@ LAST-MODIFIED:20261010T192727Z
 SEQUENCE:0
 STATUS:CONFIRMED
 SUMMARY:ASD-S: March break - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261211
+DTEND;VALUE=DATE:20261212
+UID:asds-2026-2027-14@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: K-8: Interviews / professional learning - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+UID:asds-2026-2027-7@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192726Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: Truth and Reconciliation Day - NO CLASSES
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -69,9 +472,9 @@ SUMMARY:Raven Time
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270101
-DTEND;VALUE=DATE:20270102
-UID:asds-2026-2027-17@school-calendar.local
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+UID:asds-2026-2027-15@school-calendar.local
 URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
  endar-2026-2027-.pdf
 CREATED:20261010T192725Z
@@ -82,212 +485,7 @@ DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
 LAST-MODIFIED:20261010T192727Z
 SEQUENCE:0
 STATUS:CONFIRMED
-SUMMARY:ASD-S: Holiday - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270507
-DTEND;VALUE=DATE:20270508
-UID:asds-2026-2027-28@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Provincial NBTA Council Day - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261119
-DTEND;VALUE=DATE:20261120
-UID:6tgmcchl6hgjabb6chhjeb9k6lj3ab9pclh3ebb56cpmap1hcgoj0c32c8@google.com
-CREATED:20261021T195226Z
-LAST-MODIFIED:20261021T195226Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Career Fair
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270312
-DTEND;VALUE=DATE:20270313
-UID:asds-2026-2027-24@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: K-8: Report preparation - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270104
-DTEND;VALUE=DATE:20270105
-UID:asds-2026-2027-18@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Classes resume
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20260908
-DTEND;VALUE=DATE:20260910
-UID:asds-2026-2027-4@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Half of students attend on either day. Follow your school's ass
- igned day and plan.\nSource: ASD-S family school calendar 2026-2027 (May 20
- \, 2026).\nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-Sch
- ool-Calendar-2026-2027-.pdf\nStatic import\; later district changes will no
- t sync automatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Kindergarten: Staggered entry
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261021
-DTEND;VALUE=DATE:20261022
-UID:chi66d34cdgjgbb46pj3gb9kcko3eb9pcksm6b9n68rmcc1m6op3aphjcg@google.com
-CREATED:20261015T184602Z
-LAST-MODIFIED:20261015T184602Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Take Me Outside Day
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270524
-DTEND;VALUE=DATE:20270525
-UID:asds-2026-2027-30@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Victoria Day - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270203
-DTEND;VALUE=DATE:20270204
-UID:asds-2026-2027-21@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: 9-12: Semester 2 starts / report cards
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261120
-DTEND;VALUE=DATE:20261121
-UID:asds-2026-2027-13@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Parent/teacher interviews and district-based / school-based pro
- fessional learning.\nSource: ASD-S family school calendar 2026-2027 (May 20
- \, 2026).\nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-Sch
- ool-Calendar-2026-2027-.pdf\nStatic import\; later district changes will no
- t sync automatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: 9-12: Interviews / professional learning - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20260918
-DTEND;VALUE=DATE:20260919
-UID:asds-2026-2027-6@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: School improvement planning - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261027
-DTEND;VALUE=DATE:20261028
-UID:3jnkfe2m2kff4ibkav1tti629v@google.com
-CREATED:20261010T205344Z
-LAST-MODIFIED:20261021T172934Z
-SEQUENCE:1
-STATUS:CONFIRMED
-SUMMARY:Grade 7 Immunizations
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270215
-DTEND;VALUE=DATE:20270216
-UID:asds-2026-2027-22@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Family Day - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270329
-DTEND;VALUE=DATE:20270330
-UID:asds-2026-2027-26@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Easter Monday - NO CLASSES
+SUMMARY:ASD-S: K-12: Last classes before winter break
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -309,221 +507,6 @@ SUMMARY:ASD-S: Grades 6 & 9: First day / transition
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261218
-DTEND;VALUE=DATE:20261219
-UID:asds-2026-2027-15@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: K-12: Last classes before winter break
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261012
-DTEND;VALUE=DATE:20261013
-UID:asds-2026-2027-8@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Thanksgiving - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261029
-DTEND;VALUE=DATE:20261030
-UID:16kpdlrkm8gkifq66nss572nld@google.com
-CREATED:20261010T205446Z
-LAST-MODIFIED:20261010T205446Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Social
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20260907
-DTEND;VALUE=DATE:20260908
-UID:asds-2026-2027-1@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Labour Day - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261111
-DTEND;VALUE=DATE:20261112
-UID:asds-2026-2027-11@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Remembrance Day - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261221
-DTEND;VALUE=DATE:20270101
-UID:asds-2026-2027-16@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Winter holidays - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270614
-DTEND;VALUE=DATE:20270619
-UID:asds-2026-2027-31@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: 9-12: Assessment / learning demonstration / recovery
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261120
-DTEND;VALUE=DATE:20261121
-UID:asds-2026-2027-12@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: K-8: Report preparation - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20260930
-DTEND;VALUE=DATE:20261001
-UID:asds-2026-2027-7@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Truth and Reconciliation Day - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261102
-DTEND;VALUE=DATE:20261103
-UID:asds-2026-2027-10@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: EECD professional learning - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270201
-DTEND;VALUE=DATE:20270203
-UID:asds-2026-2027-20@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192725Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: 9-12: Turnaround days - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270326
-DTEND;VALUE=DATE:20270327
-UID:asds-2026-2027-25@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: Good Friday - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270510
-DTEND;VALUE=DATE:20270511
-UID:asds-2026-2027-29@school-calendar.local
-URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
- endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
- \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
- dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
- tomatically.
-LAST-MODIFIED:20261010T192727Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:ASD-S: NBTA Branch Day - NO CLASSES
-TRANSP:TRANSPARENT
-END:VEVENT
-BEGIN:VEVENT
 DTSTART;VALUE=DATE:20270125
 DTEND;VALUE=DATE:20270130
 UID:asds-2026-2027-19@school-calendar.local
@@ -541,37 +524,26 @@ SUMMARY:ASD-S: 9-12: Assessment / learning demonstration / recovery
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-DTSTART:20261014T183000Z
-DTEND:20261014T193000Z
-UID:49ci6terqqnvv45gmded00oh36@google.com
-CREATED:20261010T205242Z
-LAST-MODIFIED:20261010T205242Z
-SEQUENCE:0
-STATUS:CONFIRMED
-SUMMARY:Sweet Caroline Game
-TRANSP:OPAQUE
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270409
-DTEND;VALUE=DATE:20270410
-UID:asds-2026-2027-27@school-calendar.local
+DTSTART;VALUE=DATE:20270507
+DTEND;VALUE=DATE:20270508
+UID:asds-2026-2027-28@school-calendar.local
 URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
  endar-2026-2027-.pdf
 CREATED:20261010T192726Z
-DESCRIPTION:Full-day parent/teacher interviews and professional learning.\n
- Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).\nhttps://as
- ds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calendar-2026-202
- 7-.pdf\nStatic import\; later district changes will not sync automatically.
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
 LAST-MODIFIED:20261010T192727Z
 SEQUENCE:0
 STATUS:CONFIRMED
-SUMMARY:ASD-S: K-12: Interviews / professional learning - NO CLASSES
+SUMMARY:ASD-S: Provincial NBTA Council Day - NO CLASSES
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;VALUE=DATE:20261211
-DTEND;VALUE=DATE:20261212
-UID:asds-2026-2027-14@school-calendar.local
+DTSTART;VALUE=DATE:20270104
+DTEND;VALUE=DATE:20270105
+UID:asds-2026-2027-18@school-calendar.local
 URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
  endar-2026-2027-.pdf
 CREATED:20261010T192725Z
@@ -582,7 +554,7 @@ DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
 LAST-MODIFIED:20261010T192727Z
 SEQUENCE:0
 STATUS:CONFIRMED
-SUMMARY:ASD-S: K-8: Interviews / professional learning - NO CLASSES
+SUMMARY:ASD-S: Classes resume
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -603,20 +575,48 @@ SUMMARY:ASD-S: Grades 1-5: First day
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;VALUE=DATE:20270625
-DTEND;VALUE=DATE:20270626
-UID:asds-2026-2027-33@school-calendar.local
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270216
+UID:asds-2026-2027-22@school-calendar.local
 URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
  endar-2026-2027-.pdf
-CREATED:20261010T192726Z
-DESCRIPTION:Full day.\nSource: ASD-S family school calendar 2026-2027 (May 
- 20\, 2026).\nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-S
- chool-Calendar-2026-2027-.pdf\nStatic import\; later district changes will 
- not sync automatically.
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
 LAST-MODIFIED:20261010T192727Z
 SEQUENCE:0
 STATUS:CONFIRMED
-SUMMARY:ASD-S: K-8: Last student day / final report cards
+SUMMARY:ASD-S: Family Day - NO CLASSES
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20261119
+DTEND;VALUE=DATE:20261120
+UID:6tgmcchl6hgjabb6chhjeb9k6lj3ab9pclh3ebb56cpmap1hcgoj0c32c8@google.com
+CREATED:20261021T195226Z
+LAST-MODIFIED:20261021T195226Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Career Fair
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20270203
+DTEND;VALUE=DATE:20270204
+UID:asds-2026-2027-21@school-calendar.local
+URL:https://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Cal
+ endar-2026-2027-.pdf
+CREATED:20261010T192725Z
+DESCRIPTION:Source: ASD-S family school calendar 2026-2027 (May 20\, 2026).
+ \nhttps://asds.nbed.ca/wp-content/uploads/2026/05/ASD-S-FAMILY-School-Calen
+ dar-2026-2027-.pdf\nStatic import\; later district changes will not sync au
+ tomatically.
+LAST-MODIFIED:20261010T192727Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ASD-S: 9-12: Semester 2 starts / report cards
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VTIMEZONE
